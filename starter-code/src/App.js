@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 import './App.css';
 import "./SideBar.css";
 import CountryDetail from "./CountryDetail";
-import countries from "./countries.json";
 import {BrowserRouter, Route, Router, Link } from 'react-router-dom';
+import axios from 'axios';
 
 class App extends Component {
   // Setting the state of the app
   state = {
-    countries: countries
+        countries: []
   }
-  render() {
-   
-    console.log(countries);
+  // Getting data from after first render
+  componentDidMount() {
+      axios.get("https://countries.tech-savvy.tech/countries")
+      .then(response => {
+          this.setState({countries: response.data})
+      })
+  }
 
+  render() {
     // Do things before we return
    let SideBar = this.state.countries.map((country, index)=> {
      return(
-       <li><Link to={`/details/${country.cca3}`}>{country.name.common}</Link></li>
+       <li><Link to={`/details/${country.cca3}`}><span>{country.flag}</span>{country.name.common}</Link></li>
      )})
       
-     
+     console.log(this.state.countries)
     // Returning what we want the user to see.
     return (
       <div className="App">

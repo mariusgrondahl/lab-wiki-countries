@@ -25,4 +25,5 @@
 
 .SideBar a:hover {
     color: yellow;
+    text-decoration: none;
 }
