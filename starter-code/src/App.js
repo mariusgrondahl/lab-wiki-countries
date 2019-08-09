@@ -10,11 +10,16 @@ class App extends Component {
   state = {
         countries: []
   }
+  
   // Getting data from after first render
   componentDidMount() {
       axios.get("https://countries.tech-savvy.tech/countries")
       .then(response => {
           this.setState({countries: response.data})
+      })
+
+      .catch(error => {
+        console.log(error)
       })
   }
 
@@ -25,19 +30,16 @@ class App extends Component {
        <li><Link to={`/details/${country.cca3}`}><span>{country.flag}</span>{country.name.common}</Link></li>
      )})
       
-     console.log(this.state.countries)
     // Returning what we want the user to see.
     return (
       <div className="App">
-        <div className="SideBar">
+        <div className="SideBar"s>
           <ul>
             {SideBar}
           </ul>
         </div>
             <Route exact path="/details/:countryId" component={CountryDetail} />
       </div>
-      
-   
     );
   }
 }

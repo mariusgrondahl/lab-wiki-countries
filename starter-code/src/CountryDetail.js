@@ -35,6 +35,7 @@ function CountryDetail (props) {
 
     return(
         <div className="CountryDetail">
+            <h1>{props.marius}</h1>
             <span>{foundCountry.flag}</span>
             <h1>{foundCountry.name.common}</h1>
             <h5>Capital:{foundCountry.capital}</h5>
